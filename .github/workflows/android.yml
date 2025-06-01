@@ -2,20 +2,10 @@ name: Android CI
 
 on:
   push:
-    branches: [ "master" ]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    branches: [ "context" ]
 
 jobs:
   build:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
 
     steps:
@@ -48,12 +38,3 @@ jobs:
         path: ~/.m2/repository/
         include-hidden-files: true
         if-no-files-found: error
-    - name: Upload pages
-      uses: actions/upload-pages-artifact@v3
-      with:
-        # Upload entire repository
-        path: 'api/build/intermediates/java_doc_dir/release/javaDocReleaseGeneration'
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
-

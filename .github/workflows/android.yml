@@ -37,4 +37,3 @@ jobs:
         name: library
         path: ~/.m2/repository/
         include-hidden-files: true
-        if-no-files-found: error
